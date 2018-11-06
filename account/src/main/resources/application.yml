@@ -1,0 +1,29 @@
+server:  
+  port: ${PORT:2222}
+
+spring:  
+  application:
+    name: account-service
+
+logging:
+  level:
+    org.springframework.security: TRACE
+      
+security:
+  user:
+    name: root
+    password: password
+  oauth2:
+    resource:
+      id: oauth2-resource
+#      loadBalanced: true
+      token-info-uri: http://127.0.0.1:9999/oauth/check_token
+#      userInfoUri: http://127.0.0.1:9999/user
+    client:
+      client-id: accountApp
+      client-secret: 123
+      
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
