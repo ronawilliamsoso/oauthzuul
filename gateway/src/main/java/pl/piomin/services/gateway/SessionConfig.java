@@ -1,0 +1,17 @@
+package pl.piomin.services.gateway;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
+import org.springframework.session.web.context.AbstractHttpSessionApplicationInitializer;
+
+@Configuration
+@EnableRedisHttpSession // This tells Spring to replace the baseline Apache
+						// Tomcat HttpSession object with Spring Session Redis
+public class SessionConfig extends AbstractHttpSessionApplicationInitializer {
+	@Bean
+    public JedisConnectionFactory connectionFactory() {
+        return new JedisConnectionFactory();
+    }
+}
